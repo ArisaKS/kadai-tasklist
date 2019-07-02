@@ -17,7 +17,10 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
-      redirect_to @user
+      # redirect_to @user はUsersControllerのshowアクションに遷移する。
+      # けど、routes.rbを見ると、そのルーティングが無い。
+      # したがって別のURLに遷移をさせる必要がある。
+      redirect_to login_url
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
