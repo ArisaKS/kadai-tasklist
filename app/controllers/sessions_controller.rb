@@ -7,7 +7,9 @@ class SessionsController < ApplicationController
     password = params[:session][:password]
     if login(email, password)
       flash[:success] = 'ログインに成功しました。'
-      redirect_to @user
+      # redirect_to @user はUsersControllerのshowにリダイレクトしている
+      redirect_to root_url
+      # redirect_to "http://www.yahoo.co.jp/"
     else
       flash.now[:danger] = 'ログインに失敗しました。'
       render 'new'
@@ -19,7 +21,7 @@ class SessionsController < ApplicationController
     flash[:success] = 'ログアウトしました。'
     redirect_to root_url
   end
-
+  
   private
 
   def login(email, password)

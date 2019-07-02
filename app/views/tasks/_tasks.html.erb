@@ -1,0 +1,22 @@
+<ul class="media-list">
+  
+    <!-- ループの中ではtaskを使ってあげる-->
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Content</th>
+        <th>Status</th>
+        <th>Operation</th>
+      </tr>
+      <% tasks.each do |task| %>
+      <tr>
+        <td><%= task.id %></td>
+        <td><%= task.content %></td>
+        <td><%= task.status %></td>
+        <td><%= link_to "詳細", task %> <%= link_to "編集", edit_task_path(task) %> <%= link_to "削除", task, method: :delete %></td>
+      </tr>
+      <% end %>
+    </table>
+  
+  <%= paginate tasks %>
+</ul>
